@@ -1,6 +1,6 @@
 body > header{
     margin-top: 5%;
-        
+
 }
 .header {
     left: 25px;
@@ -11,23 +11,23 @@ body > header{
 .today {
 }
 .menu{
-     margin-bottom: 1%;
-     width: 220px;
+    margin-bottom: 1%;
+    width: 220px;
 }
 body > hr{
-     margin-bottom: 1%;
+    margin-bottom: 1%;
 }
 .table-bordered>tbody>tr>td{
-     
+
     height: 160px;
-        width: 160px;
+    width: 160px;
 }
 tbody{
-     
-        color: #bbb;
+
+    color: #bbb;
 }
 #search_job{
-          width: 100%;
+    width: 100%;
     position: absolute;
     z-index: 1000;
     margin-top: 20px;
@@ -36,68 +36,91 @@ tbody{
     border-radius: 6px;
     padding-top: 10px;
     padding-left: 5px;
-     padding-right: 5px;
+    padding-right: 5px;
+    overflow : scroll;
+     overflow-x: hidden;
+    background-color: white;
+    
 }
-#search_job > option{
-        border-bottom-width: 2px;
+.search_title{
+    
+     font-weight: bold;
+    font-size: 16px;
+}
+.search_dates{
+   color: #bbb;
+    font-style:italic;
+}
+
+.job_searchs{
+    border-bottom-width: 2px;
     border-color: black;
     height: 50px;
     left: 14px;
+     border-bottom:outset  1px;
+    border-color:#bbb;
+
 }
-#search_job > option:hover{
-    background-color: blue;
-    color:#3BEDFF;
+
+.job_searchs:hover{
+    background-color: #7168F3;
+    color:white!important;
 }
-#search_job > option:active{
-    background-color: blue;
-    color:#3BEDFF;
+.job_searchs:active{
+    background-color: #7168F3;
+    color:white!important;
 }
+
 .hide{
     display: none;
+}
+.header {
+    
 }
 .selected{
     background-color: rgba(142, 142, 255, 0.16);;
 }
 .thera_job{
     background-color: rgba(142, 203, 255, 0.76);
-    color:black;
+    color:#bbb;
+    
 }
 td{
-     
+
 }
 .today{
     border-radius: 1px; /* Радиус скругления */
-     box-shadow: inset 0 0 6px;
+    box-shadow: inset 0 0 6px;
 }
 .navigation1{
     border-radius: 1px; /* Радиус скругления */
-     box-shadow: inset 0 0 2px;
-     
-      
+    box-shadow: inset 0 0 2px;
+
+
     padding-left: 2px;
     padding-right: 18px;
 
 }
 .navigation2{
     border-radius: 1px; /* Радиус скругления */
-     box-shadow: inset 0 0 2px;
-      
+    box-shadow: inset 0 0 2px;
+
     padding-left: 2px;
     padding-right: 18px;
 }
 .job_add{
-         border-radius: 1px;
+    border-radius: 1px;
     box-shadow: inset 0 0 2px;
     position: absolute;
     z-index: 1000;
     background: white;
-    width: 100%;
-        top: 10px;
-            height: 120px;
-            
+    width: 55%;
+    top: 10px;
+    height: 120px;
+
 }
 .job_add>span{
-        margin-left: 97%;
+    margin-left: 97%;
 
 }
 .job_add> input{
@@ -109,7 +132,7 @@ td{
     padding-left: 5px;
 }
 .job_add_button{
-background-color: white;
+    background-color: white;
     box-shadow: inset 0 0 1px;
     border-radius: 6px;
     padding-top: 3px;
@@ -121,33 +144,33 @@ background-color: white;
 }
 
 .navigation{
-    
+
     font-weight : bolder;
-    
+
 }
 #search{
     width: 91%;
-        padding-left: 5px;
-         box-shadow: inset 0 0 1px;
+    padding-left: 5px;
+    box-shadow: inset 0 0 1px;
 }
 .adds:hover{
-  
+
     color: white;
 
 }
 .adds:active{
-  
+
     color: white;
 
 }
 .update:hover{
-  
+
     color: white;
 
 }
 
 .update:active{
-  
+
     color: white;
 
 }
@@ -163,17 +186,94 @@ background-color: white;
     padding-top: 2px;
     background-color: #6060EF;
     color: white;
-        margin-left: 10px;
+    margin-left: 10px;
 }
 .clears_image{
-     color: rgba(47, 33, 33, 0.38);
-     top: 5px;
+    color: rgba(47, 33, 33, 0.38);
+    top: 5px;
 }
 .clears_button{
-        padding-left: 0px;
+    padding-left: 0px;
     position: absolute;
     padding-right: 0px;
     left: 90%;
     margin-top: 3px;
-        color: rgba(47, 33, 33, 0.38);
+    color: rgba(47, 33, 33, 0.38);
+}
+.titles{
+     font-weight : bolder;
+        color:black;
+        display: block;
+}
+.participants{
+    color:black;
+         display: block;
+}
+.infos{
+    color:black;
+         display: block;
+         margin-top: 8px;
+}
+#modal-body .title{
+   font-weight : bolder;
+        color:black;
+       margin-bottom: 2%;
+}
+
+#modal-body .date{
+        margin-bottom: 2%;
+}
+#modal-body .participants{
+        margin-bottom: 13%;
+       
+}
+#modal-body .info{
+        margin-bottom: 7%;
+        
+}
+#info{
+     height: 200px;
+}
+.isdiv{
+    font-weight: bold;
+}
+
+
+.modal_save{
+     
+     font-weight : bolder;
+  
+     background-color: white;
+ 
+         padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.modal_delete{
+
+     font-weight : bolder;
+
+   
+    background-color: white;
+        padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.modal-dialog{
+    width: 400px;
+    
+}
+#modal-body{
+    
+    padding-top: 7%;
+    padding-left: 7%;
+    padding-right: 7%;
+    padding-bottom: 9%;
+
+}
+.close{
+        margin-top: 2%;
+    margin-right: 2%;
 }

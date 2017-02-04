@@ -8,7 +8,11 @@ $(function () {
         'Май', 'Июнь', 'Июль', 'Август',
         'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'
     ];
-
+    calendar.monthName2 = [
+        'Января', 'Февраля', 'Марта', 'Апреля',
+        'Мая', 'Июня', 'Июля', 'Августа',
+        'Сентября', 'Октября', 'Ноября', 'Декабря'
+    ];
 // Названия дней недели
     calendar.dayName = [
         'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'
@@ -49,55 +53,77 @@ $(function () {
 
 
         if ((id_temp_job = calendar.listJob('' + day + '_' + month + '_' + year)) != null) {
-            modals += '<div  class="container">';
-            modals += '<div  class="row edits">';
+
+            modals += '<div  class=" edit">';
             modals += '<div style="display:none;" class="ids">';
             modals += '<input type="text" value="' + calendar.jobList[id_temp_job].id + '" id="ids" placeholder="ids">';
             modals += '</div>';
-            modals += '<div class="title col-lg-12">';
-            modals += '<input type="text" id="title"value="' + calendar.jobList[id_temp_job].title + '" placeholder="Событие">';
+
+            if (calendar.jobList[id_temp_job].title == '') {
+                modals += '<div class="title ">';
+                modals += '<input type="text" class="form-control" id="title"  value="' + calendar.jobList[id_temp_job].title + '" placeholder="События">';
+                modals += '</div>';
+            } else {
+                modals += '<div class="title ">';
+                modals += '<h3><div type="text" class="isdiv" id="date" >' + calendar.jobList[id_temp_job].title + '</div></h3>';
+                modals += '</div>';
+            }
+            ;
+
+            var temp = calendar.jobList[id_temp_job].date.split('.');
+            modals += '<div class="date ">';
+            modals += '<div type="text" class="isdiv" id="date">' + temp[0] + ' ' + calendar.monthName2[temp[1] - 1] + '</div>';
             modals += '</div>';
-            modals += '<div class="date col-lg-12">';
-            modals += '<input type="text" id="date"  disabled value="' + calendar.jobList[id_temp_job].date + '" placeholder="День, месяц, год">';
+            if (calendar.jobList[id_temp_job].participants == '') {
+                modals += '<div class="participants">';
+
+                modals += '<input type="text" class="form-control" id="participants"  value="' + calendar.jobList[id_temp_job].participants + '" placeholder="Имена участников">';
+                modals += '</div>';
+            } else {
+                modals += '<div class="participants">';
+                modals += '<div class="participants_titles">Участники:</div>';
+                modals += '<div type="text" class="isdiv"  id="participants">' + calendar.jobList[id_temp_job].participants + '</div>';
+                modals += '</div>';
+            }
+            ;
+
+
+
+
+            modals += '<div class="info">';
+            modals += '<textarea  id="info"  class="form-control" placeholder="Описание">' + calendar.jobList[id_temp_job].info + ' </textarea>';
             modals += '</div>';
-            modals += '<div class="participants col-lg-12">';
-            modals += '<input type="text" id="participants" value="' + calendar.jobList[id_temp_job].participants + '" placeholder="Имена участников">';
-            modals += '</div>';
-            modals += '<div class="info col-lg-12">';
-            modals += '<textarea  id="info" placeholder="Описание">' + calendar.jobList[id_temp_job].info + ' </textarea>';
-            modals += '</div>';
-            modals += '<div class="modal_buttons col-lg-12">';
-            modals += ' <button class="btn modal_save" onclick=calendar.addNewJob();>Готово</button>';
-            modals += ' <button class="btn modal_delete" onclick=calendar.clearJob("' + calendar.jobList[id_temp_job].id + '");>Удалить</button>';
-            modals += '</div>';
+            modals += '<div class="modal_buttons ">';
+            modals += ' <button class="btn btn-default modal_save" onclick="calendar.addNewJob();">Готово</button>';
+            modals += ' <button class="btn btn-default modal_delete" onclick=calendar.clearJob("' + day + '_' + month + '_' + year + '");>Удалить</button>';
             modals += '</div>';
             modals += '</div>';
 
 
         } else {
-            modals += '<div  class="container">';
-            modals += '<div  class="row add">';
+
+            modals += '<div  class=" add">';
             modals += '<div style="display:none;" class="ids">';
             modals += '<input type="text" value="' + day + '_' + month + '_' + year + '" id="ids" placeholder="ids">';
             modals += '</div>';
-            modals += '<div class="title col-lg-12">';
-            modals += '<input type="text" id="title" placeholder="Событие">';
+            modals += '<div class="title  ">';
+            modals += '<input class="form-control" type="text" id="title" placeholder="Событие">';
             modals += '</div>';
-            modals += '<div class="date col-lg-12">';
-            modals += '<input type="text" id="date"  disabled value="' + day + '.' + month + '.' + year + '"placeholder="День, месяц, год">';
+            modals += '<div class="date ">';
+            modals += '<input type="text" class="form-control" id="date"  disabled value="' + day + '.' + month + '.' + year + '"placeholder="День, месяц, год">';
             modals += '</div>';
-            modals += '<div class="participants col-lg-12">';
-            modals += '<input type="text" id="participants" placeholder="Имена участников">';
+            modals += '<div class="participants ">';
+            modals += '<input type="text" class="form-control" id="participants" placeholder="Имена участников">';
             modals += '</div>';
-            modals += '<div class="info col-lg-12">';
-            modals += '<textarea  id="info" placeholder="Описание"></textarea>';
+            modals += '<div class="info">';
+            modals += '<textarea  id="info" class="form-control" placeholder="Описание"></textarea>';
             modals += '</div>';
-            modals += '<div class="modal_buttons col-lg-12">';
-            modals += ' <button class="btn modal_save" onclick="calendar.addNewJob();">Готово</button>';
-            modals += ' <button class="btn modal_delete" onclick=calendar.clearJob("' + day + '_' + month + '_' + year + '");>Удалить</button>';
+            modals += '<div class="modal_buttons ">';
+            modals += ' <button class="btn btn-default modal_save" onclick="calendar.addNewJob();">Готово</button>';
+            modals += ' <button class="btn btn-default modal_delete" onclick=calendar.clearJob("' + day + '_' + month + '_' + year + '");>Удалить</button>';
             modals += '</div>';
             modals += '</div>';
-            modals += '</div>';
+
 
 
         }
@@ -308,7 +334,7 @@ $(function () {
     calendar.hideNewJobSmall = function () {
 
         $(".job_add").addClass('hide');
-
+        console.log($(".job_add"));
 
     };
     calendar.addNewJobSmall = function () {
@@ -343,12 +369,23 @@ $(function () {
 
     };
     calendar.updateJob = function (id) {
+        console.log($("#title").is(".isdiv"));
+        if ($("#title").val() === undefined) {
 
-        calendar.jobList[id].id = $("#ids").val(),
-                calendar.jobList[id].title = $("#title").val(),
-                calendar.jobList[id].date = $("#date").val(),
-                calendar.jobList[id].participants = $("#participants").val(),
-                calendar.jobList[id].info = $("#info").val()
+        } else {
+            calendar.jobList[id].title = $("#title").val();
+        }
+        ;
+        if ($("#participants").val() == '') {
+
+
+        } else {
+            calendar.jobList[id].id = $("#ids").val();
+        }
+        ;
+
+        calendar.jobList[id].id = $("#ids").val();
+        calendar.jobList[id].info = $("#info").val();
         calendar.update();
 
 
@@ -370,14 +407,14 @@ $(function () {
         var preview_job = '';
         preview_job += '<br><span class="titles">';
         preview_job += calendar.jobList[id].title;
-        preview_job += '</span><br>';
+        preview_job += '</span>';
         preview_job += '<span class="participants">';
         preview_job += calendar.jobList[id].participants;
-        preview_job += '</span><br>';
+        preview_job += '</span>';
         preview_job += '<span class="infos">';
         preview_job += calendar.jobList[id].info;
         preview_job += '</span>';
-        preview_job += '<br>';
+
 
         return preview_job;
     };
@@ -413,32 +450,56 @@ $(function () {
         $("#search_job").removeClass('hide');
         var data = $("#search").val();
         $("#search_job").html('');
+        var temp;
         var temp_search = '';
-
+        console.log(calendar.jobList);
         if (data != '') {
             calendar.jobList.forEach(function (item, i, arr) {
-                if (item.title.indexOf(data) != -1) {
-                    temp_search += '<option onclick=calendar.selectSearch("' + item.id + '");>';
+                if (item.title.toLowerCase().search(data.toLowerCase()) != -1) {
+                    temp = item.date.split('.');
+                    temp_search += '<div class="job_searchs" onclick=calendar.selectSearch("' + item.id + '");>';
+                    temp_search += '<span class="search_title">';
                     temp_search += item.title;
-                    temp_search += '</option>';
+                    temp_search += '</span><br>';
+                    temp_search += '<span class="search_dates">';
+                    temp_search += temp[0] + ' ' + calendar.monthName2[temp[1] - 1];
+                    temp_search += '</span>';
+                    temp_search += '</div>';
 
-                } else if (item.title.indexOf(date) != -1) {
-                    temp_search += '<option onclick=calendar.selectSearch("' + item.id + '");>';
-                    temp_search += item.date;
-                    temp_search += '</option>';
 
-                } else if (item.participants.indexOf(date) != -1) {
-                    temp_search += '<option onclick=calendar.selectSearch("' + item.id + '");>';
-                    temp_search += item.participants;
-                    temp_search += '</option>';
+                } else if (item.date.toLowerCase().search(data.toLowerCase()) != -1) {
+                    temp = item.date.split('.');
+                    temp_search += '<div class="job_searchs" onclick=calendar.selectSearch("' + item.id + '");>';
+                    temp_search += '<span class="search_title">';
+                    temp_search += item.title;
+                    temp_search += '</span><br>';
+                    temp_search += '<span class="search_dates">';
+                    temp_search += temp[0] + ' ' + calendar.monthName[temp[1] - 1];
+                    temp_search += '</span>';
+                    temp_search += '</div>';
 
-                };
+                } else if (item.participants.toLowerCase().search(data.toLowerCase()) != -1) {
+                    temp = item.date.split('.');
+                    temp_search += '<div class="job_searchs" onclick=calendar.selectSearch("' + item.id + '");>';
+                    temp_search += '<span class="search_title">';
+                    temp_search += item.title;
+                    temp_search += '</span><br>';
+                    temp_search += '<span class="search_dates">';
+                    temp_search += temp[0] + ' ' + calendar.monthName[temp[1] - 1];
+                    temp_search += '</span>';
+                    temp_search += '</div>';
+
+                }
+                ;
             });
         }
         ;
         $("#search_job").append(temp_search);
 
 
+    };
+    calendar.hideSearchJobSmall = function () {
+        $("#search").val(' ');
     };
     calendar.selectSearch = function (ids) {
 
@@ -466,6 +527,6 @@ $(function () {
             div.addClass('hide'); // скрываем его
         }
     });
-
+ 
 
 });
