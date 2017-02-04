@@ -133,7 +133,7 @@ $(function () {
         $("#myModalBox").modal('show');
 
     };
-    $("[data-toggle='tooltip']").tooltip();
+    
 // Отрисовка календарика на выбранный месяц и год
     calendar.drawCalendar = function (month, year) {
         var tmp = '';
@@ -286,8 +286,14 @@ $(function () {
         if (el) {
             el.innerHTML = tmp;
         }
+           
+        //Покрастка сегодняшней даты
+        if(month==(parseInt(new Date().getMonth()) + 1)){
+         
+            $('#'+(new Date().getDate())+'_'+(parseInt(new Date().getMonth()) + 1)+'_'+(new Date().getFullYear())).addClass('todays');
+        };
     }
-
+// Поиск задачи
     calendar.listJob = function (id) {
         var find = null;
         calendar.jobList.forEach(function (item, i, arr) {
@@ -300,6 +306,7 @@ $(function () {
         return find;
 
     };
+    // Добавление задачи
     calendar.addNewJob = function () {
         if ((id_temp_job = calendar.listJob($("#ids").val())) != null) {
             calendar.updateJob(id_temp_job);
@@ -325,18 +332,21 @@ $(function () {
         $("#myModalBox").modal('hide');
 
     };
+ // Показать маленекое окно добавления задачи
     calendar.showNewJobSmall = function () {
 
         $(".job_add").removeClass('hide');
 
 
     };
+    // Спрятать маленекое окно добавления задачи
     calendar.hideNewJobSmall = function () {
 
         $(".job_add").addClass('hide');
         console.log($(".job_add"));
 
     };
+    // Добавить задачу с маленького окна
     calendar.addNewJobSmall = function () {
         var temp;
 
@@ -368,6 +378,7 @@ $(function () {
 
 
     };
+    // Обновить задачу
     calendar.updateJob = function (id) {
         console.log($("#title").is(".isdiv"));
         if ($("#title").val() === undefined) {
@@ -391,7 +402,7 @@ $(function () {
 
 
     };
-
+    // Удалить задачу
     calendar.clearJob = function (id) {
         calendar.jobList.forEach(function (item, i, arr) {
             if (item.id == id) {
@@ -403,6 +414,7 @@ $(function () {
             ;
         });
     };
+     // Получит задачу на заданный день
     calendar.getCalendarJob = function (id) {
         var preview_job = '';
         preview_job += '<br><span class="titles">';
@@ -418,13 +430,14 @@ $(function () {
 
         return preview_job;
     };
-
+    // Обновить страницу
     calendar.update = function () {
         calendar.drawCalendar(
                 calendar.selectedDate.Month,
                 calendar.selectedDate.Year
                 );
     };
+    // Установить сегоднешний день
     calendar.now = function () {
         calendar.selectedDate = {
             'Day': new Date().getDate(),
@@ -495,12 +508,14 @@ $(function () {
         }
         ;
         $("#search_job").append(temp_search);
-
+     
 
     };
+     // Отчистить окно поиска
     calendar.hideSearchJobSmall = function () {
         $("#search").val(' ');
     };
+     // Выбрать дату из поиска
     calendar.selectSearch = function (ids) {
 
         var temp_date;
@@ -520,8 +535,16 @@ $(function () {
             calendar.selectedDate.Month,
             calendar.selectedDate.Year
             );
+     // Проверка на выход из зоны
     $(document).mouseup(function (e) { // событие клика по веб-документу
         var div = $("#search_job"); // тут указываем ID элемента
+        if (!div.is(e.target) // если клик был не по нашему блоку
+                && div.has(e.target).length === 0) { // и не по его дочерним элементам
+            div.addClass('hide'); // скрываем его
+        }
+    });
+     $(document).mouseup(function (e) { // событие клика по веб-документу
+        var div = $(".job_add"); // тут указываем ID элемента
         if (!div.is(e.target) // если клик был не по нашему блоку
                 && div.has(e.target).length === 0) { // и не по его дочерним элементам
             div.addClass('hide'); // скрываем его

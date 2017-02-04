@@ -61,7 +61,9 @@ tbody{
     border-color:#bbb;
 
 }
-
+.todays{
+      background-color:rgba(187, 187, 187, 0.22);
+}
 .job_searchs:hover{
     background-color: #7168F3;
     color:white!important;
