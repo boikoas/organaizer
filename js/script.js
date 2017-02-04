@@ -391,7 +391,7 @@ $(function () {
 
 
         } else {
-            calendar.jobList[id].id = $("#ids").val();
+            calendar.jobList[id].participants = $("#participants").val();
         }
         ;
 
